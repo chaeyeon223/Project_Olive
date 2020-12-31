@@ -10097,7 +10097,6 @@ a:focus {
 .topbar .nav-item.dropdown .dropdown-toggle::after {
   width: 1rem;
   text-align: center;
-  float: right;
   vertical-align: 0;
   border: 0;
   font-weight: 900;
