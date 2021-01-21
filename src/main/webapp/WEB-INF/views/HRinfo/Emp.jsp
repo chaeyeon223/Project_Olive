@@ -6,7 +6,7 @@
  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -15,13 +15,50 @@
 <link href="/resources/css/chaeyeon.css" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Emp</title>
 <!-- 스타일시트, CDN 모듈화 -->
 <jsp:include page="/WEB-INF/views/inc/HeadLink.jsp"></jsp:include>
 <style>
+h1 {
+	text-decoration: underline;
+	font-weight: bold;
+	text-decoration-color: #ffe561;
+	text-decoration-thickness: 5px;
+}
+
+/* 모달 테이블 */
+#hr_info {
+	padding: 30px 30px;
+	margin: auto;
+	width: 80%;
+}
+
+#hr_info td {
+	padding: 12px 15px;
+	vertical-align: middle;
+}
+
+#hr_info tr {
+	text-align: left;
+	font-size: 18px;
+}
+
+#hr_info tr td:first-child {
+	width: 30%;
+	color: #96a2af;
+}
+
+#hr_info tr td:last-child {
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	color: #384a5e;
+	font-weight: bold;
+}
+
 .table-wrapper {
 	min-width: 1000px;
 	background: #fff;
@@ -113,45 +150,7 @@ table.table .avatar {
 	margin-right: 10px;
 }
 
-.pagination {
-	float: right;
-	margin: 0 0 5px;
-}
-
-.pagination li a {
-	border: none;
-	font-size: 13px;
-	min-width: 30px;
-	min-height: 30px;
-	color: #999;
-	margin: 0 2px;
-	line-height: 30px;
-	border-radius: 2px !important;
-	text-align: center;
-	padding: 0 6px;
-}
-
-.pagination li a:hover {
-	color: #666;
-}
-
-.pagination li.active a, .pagination li.active a.page-link {
-	background: #03A9F4;
-}
-
-.pagination li.active a:hover {
-	background: #0397d6;
-}
-
-.pagination li.disabled i {
-	color: #ccc;
-}
-
-.pagination li i {
-	font-size: 16px;
-	padding-top: 6px
-}
-
+/
 .hint-text {
 	float: left;
 	margin-top: 10px;
@@ -216,32 +215,36 @@ table.table .avatar {
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Heading -->
-					<h1 class="h3 text-gray-800">사원조회</h1>
-					<div class="card shadow py-4 bg-white my-5">
-						<div class="row justify-content-end mx-5">
-							<div class="form-group col-md-2">
-								<select id="inputState" class="form-control">
-									<option selected>검색조건</option>
-									<option>사번</option>
-									<option>이름</option>
-									<option>소속</option>
-								</select>
-							</div>
-							<form class="col-md-3 d-none d-sm-inline-block ">
+					<h1 class="h3 text-gray-800">인사정보</h1>
+					<div class="card shadow bg-white my-5">
+						<!-- Card Header -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h5 class="ml-0 mr-0 font-weight-bold text-info">직원 목록</h5>
+							<form class="form-group mb-0">
 								<div class="input-group">
-									<input type="text" class="form-control border-0 small" placeholder="검색어를 입력해주세요" aria-label="Search"
-										aria-describedby="basic-addon2">
+									<select
+										class="form-control text-center form-select-lg"
+										id="inputState">
+										<option selected value="empno">사번</option>
+										<option  value="ename">이름</option>
+										<option value="head">본부</option>
+										<option value="dept">부서</option>
+									</select> <input type="text"
+										class="form-control text-center form-select-lg"
+										id="search_input">
 									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
+										<button type="button" class="btn btn-primary ml-0"
+											id="search_button">
+											<i class="fas fa-search fa-sm "></i>
 										</button>
 									</div>
 								</div>
 							</form>
 						</div>
-						<div class="table-responsive">
-							<div class="table-wrapper">
-								<table class="table table-striped table-hover">
+						<div class="table-responsive  text-center">
+							<div class="table-wrapper row justify-content-center mx-5">
+								<table id="emptable" class="table table-striped table-hover">
 									<thead>
 										<tr>
 											<th></th>
@@ -253,152 +256,352 @@ table.table .avatar {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="list" items="${requestScope.emplist}">
-										<tr>
+										<c:forEach var="list" items="${emplist}">
+											<tr>
 
-											<td>
-												<img src="/resources/img/undraw_profile_1.svg" width="40">
-											</td>
-											<td>${list.empNo}</td>
-											<td>${list.ename}</td>
-											<td>${list.deptname}</td>
-											<td>${list.positionname}</td>
-											<td>
-												<a href="#editEmployeeModal" class="edit" data-toggle="modal">보기</a>
-											</td>
-										</tr>
-										</c:forEach> 
-
+												<td><img src="/resources/upload/${list.PIC}" width="40"
+													class="rounded-circle"
+													onerror="this.src='/resources/img/undraw_profile_1.svg'">
+												</td>
+												<td>${list.EMPNO}</td>
+												<td>${list.ENAME}</td>
+												<td>${list.DEPTNAME}</td>
+												<td>${list.POSITIONNAME}</td>
+												<td></td>
+											</tr>
+										</c:forEach>			
 									</tbody>
 								</table>
-								<div class="clearfix">
-									<div class="hint-text">
-										Showing <b>5</b> out of <b>25</b> entries
-									</div>
-									<ul class="pagination">
-										<li class="page-item disabled">
-											<a href="#">Previous</a>
-										</li>
-										<li class="page-item">
-											<a href="#" class="page-link">1</a>
-										</li>
-										<li class="page-item">
-											<a href="#" class="page-link">2</a>
-										</li>
-										<li class="page-item active">
-											<a href="#" class="page-link">3</a>
-										</li>
-										<li class="page-item">
-											<a href="#" class="page-link">4</a>
-										</li>
-										<li class="page-item">
-											<a href="#" class="page-link">5</a>
-										</li>
-										<li class="page-item">
-											<a href="#" class="page-link">Next</a>
-										</li>
-									</ul>
+								<c:set var="page" value="${pagination}"></c:set>
+									<nav aria-label="Page navigation example">
+										<ul class="pagination" id="pagination">
+											<c:if test="${page.prev}">
+												<!-- prev가 true라면 prev 버튼 보여주기 -->
+												<li class="page-item"><a class="page-link" href="#"
+													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+														<span class="sr-only">Previous</span>
+												</a></li>
+											</c:if>
+											<c:forEach var="paging" begin="${page.startPage}"
+												end="${page.endPage}">
+												<c:choose>
+													<c:when test="${paging eq criteria.page}">
+														<li class="page-item page-link"><b>${paging}</b></li>
+													</c:when>
+													<c:otherwise>
+														<li class="page-item"><a class="page-link page-btn"
+															href="#">${paging}</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+											<c:if test="${page.next}">
+												<li class="page-item"><a class="page-link" href="#"
+													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+														<span class="sr-only">Next</span>
+												</a></li>
+											</c:if>
+										</ul>
+									</nav>
+									<c:set var="criteria" value="${criteria}" />
+									<input type="text" value="${criteria.searchType}"
+										id="oldSearchType" hidden> <input type="text"
+										value="${criteria.keyword}" id="oldKeyword" hidden> <input
+										type="text" value="${criteria.page}" id="oldPage" hidden>
+									<input type="text" value="${criteria.perPageNum}"
+										id="oldPerPageNum" hidden>
 								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Edit Modal HTML -->
-					<div id="editEmployeeModal" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<form>
-									<div class="modal-header">
-										<h4 class="modal-title">사원정보</h4>
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									</div>
-									<div class="modal-body">
-										<div class="row justify-content-center">
-											<div class="col-md-5 border-right">
-												<div class="d-flex flex-column align-items-center text-center p-3 py-5">
-													<img class="mt-5" src="/resources/img/undraw_profile.svg" width="90">
-													<span class="font-weight-bold mt-3">2001</span>
-													<h3>박채연</h3>
-												</div>
+								<!-- Edit Modal HTML -->
+									<div id="EmpModal" class="modal fade">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form>
+													<div class="modal-header">
+														<h4 class="modal-title">사원정보</h4>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">&times;</button>
+													</div>
+													<div class="modal-body">
+														<div class="row justify-content-center">
+															<div class="col-md-5 border-right">
+																<div
+																	class="d-flex flex-column align-items-center text-center p-3 py-5">
+																	<img class="mt-5"
+																		src="/resources/img/undraw_profile.svg" width="90">
+																	<span class="font-weight-bold mt-3">${list.EMPNO}</span>
+																	<span class="font-weight-bold mt-3">${list.ENAME}</span>
+																</div>
+															</div>
+															<div class="col-md-7 scroll">
+																<div class="p-5">
+																	<div class="row mt-3">
+																		<div class="col-md-10">
+																			<p>사번</p>
+																			<span class="font-weight-bold mt-3">${list.EMPNO}</span>
+																		</div>
+																	</div>
+																	<div class="row mt-4">
+																		<div class="col-md-10">
+																			<p>이름</p>
+																			<span class="font-weight-bold mt-3">${list.ENAME}</span>
+																		</div>
+																	</div>
+																	<div class="row mt-4">
+																		<div class="col-md-10">
+																			<p>본부</p>
+																			<span class="font-weight-bold mt-3">${list.HEADNAME}</span>
+																		</div>
+																	</div>
+																	<div class="row mt-4">
+																		<div class="col-md-10">
+																			<p>부서</p>
+																			<span class="font-weight-bold mt-3">${list.DEPTNAME}팀
+																				: ${list.POSITIONNAME}</span>
+																		</div>
+																	</div>
+																	<div class="row mt-4">
+																		<div class="col-md-10">
+																			<p>이메일</p>
+																			<span class="font-weight-bold mt-3">${list.EMAIL}</span>
+																		</div>
+																	</div>
+																	<div class="row mt-4">
+																		<div class="col-md-10">
+																			<p>휴대폰번호</p>
+																			<span class="font-weight-bold mt-3">${list.PHONE}</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+													</div>
+													<div class="modal-footer"></div>
+												</form>
 											</div>
-											<div class="col-md-7 scroll">
-												<div class="p-5">
-													<div class="row mt-3">
-														<div class="col-md-10">
-															<p>사번</p>
-															<input type="text" class="form-control" placeholder="사번" value="2001" readonly>
-														</div>
-													</div>
-													<div class="row mt-4">
-														<div class="col-md-10">
-															<p>이름</p>
-															<input type="text" class="form-control" placeholder="이름" value="Douglas Mcgee" readonly>
-														</div>
-													</div>
-													<div class="row mt-4">
-														<div class="col-md-10">
-															<p>비밀번호</p>
-															<input type="text" class="form-control" placeholder="비밀번호" value="*****">
-														</div>
-													</div>
-													<div class="row mt-4">
-														<div class="col-md-10">
-															<p>이메일</p>
-															<input type="text" class="form-control" placeholder="이메일" value="john@bbb.com">
-														</div>
-													</div>
-													<div class="row mt-4">
-														<div class="col-md-10">
-															<p>휴대폰번호</p>
-															<input type="text" class="form-control" placeholder="휴대폰번호" value="010-8888-7777">
-														</div>
-													</div>
-													<div class="row mt-4">
-														<div class="col-md-10">
-															<p>주소</p>
-															<input type="text" class="form-control" placeholder="주소" value="서울특별시 뫄뫄뫄">
-														</div>
-													</div>
-												</div>
-											</div>
 										</div>
-										<!-- <div class="form-group">
-											<label>Name</label>
-											<input type="text" class="form-control" required>
-										</div>
-										<div class="form-group">
-											<label>Email</label>
-											<input type="email" class="form-control" required>
-										</div>
-										<div class="form-group">
-											<label>Address</label>
-											<textarea class="form-control" required></textarea>
-										</div>
-										<div class="form-group">
-											<label>Phone</label>
-											<input type="text" class="form-control" required>
-										</div>		 -->
 									</div>
-									<div class="modal-footer">
-										<input type="button" class="btn btn-info" data-dismiss="modal" value="Edit">
-										<input type="submit" class="btn btn-info" value="Save">
-									</div>
-								</form>
-							</div>
+
 						</div>
 					</div>
 				</div>
-			</div>
 			<!-- /.container-fluid -->
-		</div>
+			</div>
+			<!-- Footer 모듈화 -->
+	<jsp:include page="/WEB-INF/views/inc/Footer.jsp"></jsp:include>
 		<!-- End of Main Content -->
-	</div>
+		</div>
 	<!-- End of Content Wrapper -->
 	</div>
 	<!-- End of Page Wrapper -->
-	<!-- Footer 모듈화 -->
-	<jsp:include page="/WEB-INF/views/inc/Footer.jsp"></jsp:include>
+	<!-- Logout Modal-->
+	<jsp:include page="/WEB-INF/views/inc/LogOutModal.jsp" />
+	
 	<!-- End of Footer 모듈화 -->
 	<!-- 모든 스크립트 모듈화 -->
 	<jsp:include page="/WEB-INF/views/inc/BottomLink.jsp"></jsp:include>
+	<script>
+	$(function(){
+		$('#collapseInfo').addClass('show');
+		$('#collapseInfo').prev().removeClass('collapsed');
+		$('#collapseInfo').prev().children().css("color","#fff");
+		
+
+		})
+	
+
+	/* 모달 */
+	$("#emptable").on("click", 'tr', function(){
+		var tr = $(this);
+		var td = tr.children();
+		var empno = td.eq(1).text();
+		$('.modal-content .modal-body').empty();
+		$.ajax(
+				{
+					type : "POST",
+					url	 : "/HRinfo/searchByEmpno.do",
+					data : {empno:empno},
+					success: (data) => {
+	                    var html="";
+	                    html += "<table id='hr_info'><tbody>";
+	                    html += "<tr><td>사번</td><td>"+data.EMPNO+"</td></tr>"+
+	                  			"<tr><td>이름</td><td>"+data.ENAME+"</td></tr>"+
+	                  			"<tr><td>본부</td><td>"+data.HEADNAME+"</td></tr>"+
+	                    		"<tr><td>부서</td><td>"+data.DEPTNAME+"</td></tr>"+
+	                    		"<tr><td>직위</td><td>"+data.CLASSNAME+"</td></tr>"+
+	                    		"<tr><td>이메일</td><td>"+data.EMAIL+"</td></tr>"+
+	                    		"<tr><td>휴대전화</td><td>"+data.PHONE+"</td></tr>"
+	                    html += '</tbody></table>';      
+						$('.modal-content .modal-body').append(html) 
+	                    $('#EmpModal').modal('show');
+					},
+					error : function(error){
+						console.log(error);
+					}
+				} 
+			);  
+	})
+	
+	
+
+    $('#search_button').click(function() {
+
+		var searchType = "";
+		var keyword = $('#search_input').val();
+		if ($('#inputState').val() == 'empno') {
+			searchType = "EMPNO"
+		} else if ($('#inputState').val() == 'head') {
+			searchType = "HEADNAME"
+		} else if ($('#inputState').val() == 'dept') {
+			searchType = "DEPTNAME"
+		} else if ($('#inputState').val() == 'ename') {
+			searchType = "ENAME"
+		}
+
+		$.ajax({
+			url: "/HRinfo/Emp.do",
+			type: "POST",
+			dataType:  "JSON",
+			data: {
+				searchType: searchType,
+				keyword: keyword
+			},
+			success: (data) => {
+				insertDatabyAjax(data);
+			},error : function(error){
+				console.log(error);
+			}
+		});
+		$('#search_input').val("");
+	}) 
+	
+	$(document).on("click", ".page-btn",function(){
+		let searchType = $('#oldSearchType').val();
+		let keyword = $('#oldKeyword').val();
+		let perPageNum = $('#oldPerPageNum').val();
+		let page = $(this)[0].text;
+		$.ajax({
+			url: "/HRinfo/Emp.do",
+			type: "POST",
+			dataType:  "JSON",
+			data: {
+				searchType : searchType,
+				keyword : keyword,
+				perPageNum : perPageNum,
+				page : page
+			},
+			success: (data) => {
+				insertDatabyAjax(data);
+			},error : function(error){
+				console.log(error);
+			}
+		})
+	});
+	
+	$(document).on("click", ".page-btn-prev",function(){
+		let searchType = $('#oldSearchType').val();
+		let keyword = $('#oldKeyword').val();
+		let perPageNum = $('#oldPerPageNum').val();
+		let page = ($('#oldPage').val()-1);
+		$.ajax({
+			url: "/HRinfo/Emp.do",
+			type: "POST",
+			dataType:  "JSON",
+			data: {
+				searchType : searchType,
+				keyword : keyword,
+				perPageNum : perPageNum,
+				page : page
+			},
+			success: (data) => {
+				insertDatabyAjax(data);
+			}
+		})
+	});
+	
+	$(document).on("click", ".page-btn-next",function(){
+		let searchType = $('#oldSearchType').val();
+		let keyword = $('#oldKeyword').val();
+		let perPageNum = $('#oldPerPageNum').val();
+		let page = (parseInt($("#oldPage").val())+1);
+		$.ajax({
+			url: "/HRinfo/Emp.do",
+			type: "POST",
+			dataType:  "JSON",
+			data: {
+				searchType : searchType,
+				keyword : keyword,
+				perPageNum : perPageNum,
+				page : page
+			},
+			success: (data) => {
+				insertDatabyAjax(data);
+			},error : function(error){
+				console.log(error);
+			}
+		})
+	});
+	
+	
+	
+	
+	function insertDatabyAjax(data){
+
+			$('#emptable > tbody').empty();
+			$.each(data.emplist, function(index, emp){
+				
+				$('#emptable').append(
+						"<tr><td>"+
+						"<img src='/resources/upload/"+emp.PIC+"' class='rounded-circle' width='40' onerror='this.src=\"/resources/img/undraw_profile_1.svg\"'>"+
+						"</td><td>"+emp.EMPNO+
+						"</td><td>"+emp.ENAME+
+						"</td><td>"+emp.DEPTNAME+
+						"</td><td>"+emp.POSITIONNAME+
+						"</td><td>"+
+						"</td></tr>"
+					);
+		
+				
+			});
+
+			//수정
+			$('#pagination').empty();
+			let inputPaginationData = "";
+			if(data.pagination.prev == true){
+				inputPaginationData += "<li class='page-item'>"
+									  +"<a class='page-link page-btn-prev' href='#' aria-label='Previous'>"
+									  +"<span aria-hidden='true'>&laquo;</span>"
+									  +"<span class='sr-only'>Previous</span>"
+									  +"</a></li>"
+			}
+			for(let i=data.pagination.startPage; i<=data.pagination.endPage; i++){
+				if(i == data.criteria.page){
+				inputPaginationData += "<li class='page-item page-link'>"
+				+ "<b>"
+				+i +"</b></li>"
+				}else{
+				inputPaginationData += "<li class='page-item'>"
+				+ "<a class='page-link page-btn' href='#'>" +i
+				+"</a></li>"
+				} 
+			}
+			if(data.pagination.next == true){
+				inputPaginationData += "<li class='page-item'>"
+									  +"<a class='page-link page-btn-next' href='#' aria-label='Next'>"
+									  +"<span aria-hidden='true'>&raquo;</span>"
+									  +"<span class='sr-only'>Next</span>"
+									  +"</a></li>"
+			}
+			$('#pagination').html(inputPaginationData);
+			
+			
+			$('#oldSearchType').val(data.criteria.searchType);
+			$('#oldKeyword').val(data.criteria.keyword);
+			$('#oldperPageNum').val(data.criteria.perPageNum);
+			$('#oldPage').val(data.criteria.page);	  
+	}
+
+
+		
+	</script>
 </body>
 </html>

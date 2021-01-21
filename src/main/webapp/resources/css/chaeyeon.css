@@ -19,6 +19,7 @@
 }
  */
  
+
 /* MainLogin 배경색, 버튼색 */
 .bg-gradient-loginpage {
   background-color: #7F7FD5;
@@ -79,7 +80,7 @@
 
 .table-button {
   width:100px;
-  background-color: #7F7FD5;
+  background-color: #7aa458;
   border: none;
   color:#fff;
   padding: 10px 0;
@@ -145,7 +146,24 @@
     overflow-y: auto;
 }
 
-
+/* button */
+.btn.outline {
+  background: none;
+  padding: 12px 22px;
+}
+.btn-primary.outline {
+  border: 2px solid #0099cc;
+  color: #0099cc;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+  color: #33a6cc;
+  border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+  border-color: #007299;
+  color: #007299;
+  box-shadow: none;
+}
 
 
 /* 내가 !!!!!  */
