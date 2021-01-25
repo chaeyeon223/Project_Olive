@@ -9,7 +9,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -246,7 +246,7 @@ h1{
 										</h6>
 									</s:authorize>
 									<!-- 비동기로 DB다녀오는 친구들 -->
-									<s:authorize access="hasRole('ROLE_MANAGER')">
+									<security:authorize access="hasRole('ROLE_MANAGER')">
 										<form class="form-group mb-0">
 											<div class="input-group">
 												<select class="form-control text-center form-select-lg"
@@ -268,7 +268,7 @@ h1{
 												</div>
 										</form>
 								</div>
-								</s:authorize>
+								</security:authorize>
 							</div>
 							<!-- Card Body -->
 							<div class="card-body">
