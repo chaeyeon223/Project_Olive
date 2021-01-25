@@ -34,12 +34,19 @@
 		<!-- authentication-failure-url="/goToLogin.do?error" -->
 
 		<security:logout logout-success-url="/goToLogin.do" />
-		<security:intercept-url
-			pattern="/HR_management/**"
-			access="hasRole('ROLE_HR')" />
 		
-		<security:intercept-url pattern="/approval/AddForm.do" access="hasRole('ROLE_HR')" 
-			/>
+		<security:intercept-url 
+		pattern="/HR_management/**" 	access="hasRole('ROLE_HR')" />
+		<security:intercept-url 
+		pattern="/approval/AddForm.do" 	access="hasRole('ROLE_HR')" />
+		<security:intercept-url 
+		pattern="/goToMain.do" 			access="hasRole('ROLE_GENERAL')" />
+		<security:intercept-url 
+		pattern="/goToLogin.do" 		access="permitAll" />
+		<security:intercept-url 
+		pattern="/**" 					access="permitAll" />
+		
+		
 		<security:access-denied-handler error-page="/error/403.do"/>
 		<!-- 중복 로그인 방지 -->
 		<security:session-management
