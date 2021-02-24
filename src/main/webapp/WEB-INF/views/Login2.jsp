@@ -92,5 +92,5 @@
 	<!-- SweetAlert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- Email validation JavaScript -->
-	<script src="/resources/js/email.js"></script>
+	<script src="../resources/js/email.js"></script>
 </html>
