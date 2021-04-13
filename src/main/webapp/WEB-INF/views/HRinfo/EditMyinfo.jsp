@@ -250,7 +250,8 @@ table tr td:last-child {
 														<p>비밀번호</p>
 														<input name="pwd" id="pwd" type="text"
 															class="form-control" placeholder="새 비밀번호">
-														<div id="alert" class="alert alert-danger">비밀번호는 필수입력값입니다.</div>
+														<div id="alert" class="alert alert-danger">비밀번호는
+															필수입력값입니다.</div>
 													</div>
 
 												</div>
@@ -314,8 +315,8 @@ table tr td:last-child {
 			<!-- End of Main Content -->
 
 
-		<!-- Footer 모듈화 -->
-	<jsp:include page="/WEB-INF/views/inc/Footer.jsp"></jsp:include>
+			<!-- Footer 모듈화 -->
+			<jsp:include page="/WEB-INF/views/inc/Footer.jsp"></jsp:include>
 		</div>
 		<!-- End of Content Wrapper -->
 
@@ -323,7 +324,7 @@ table tr td:last-child {
 	<!-- End of Page Wrapper -->
 	<!-- Logout Modal-->
 	<jsp:include page="/WEB-INF/views/inc/LogOutModal.jsp" />
-	
+
 	<!-- End of Footer 모듈화 -->
 	<!-- 모든 스크립트 모듈화 -->
 	<jsp:include page="/WEB-INF/views/inc/BottomLink.jsp"></jsp:include>
@@ -379,6 +380,7 @@ table tr td:last-child {
 	}); 
 
 
+
 	/* 주소 */
 	// 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
@@ -419,6 +421,7 @@ table tr td:last-child {
         initLayerPosition();
     }
 
+    
     // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
     // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.

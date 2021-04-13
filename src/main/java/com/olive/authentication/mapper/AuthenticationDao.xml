@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.olive.authentication.dao.AuthenticationDao">
 	<select id="getFailCount" resultType="Integer">
 	 	SELECT 
-	 	if(loginCount=null, 0, loginCount) as logincount
+	 	ifnull(loginCount, 0) as logincount
 		FROM emp where empno = #{empno}
 	</select>
 	
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="addFailCount">
 		UPDATE emp
-		SET loginCount = IF(loginCount=null, 0, loginCount) + 1
+		SET loginCount = ifnull(loginCount, 0) + 1
 		WHERE empno = #{empno};
 	</update>
 	
