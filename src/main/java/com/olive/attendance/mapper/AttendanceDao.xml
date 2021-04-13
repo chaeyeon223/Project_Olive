@@ -11,7 +11,7 @@
 		ar.attCode as attCode,
 		ar.date as date
 		FROM
-		Att_Record ar join ATTENDANCE a ON ar.ATTCODE =a.ATTCODE
+		att_record ar join attendance a ON ar.ATTCODE =a.ATTCODE
 		where empno = #{empno}
 	</select>
 
@@ -22,7 +22,7 @@
 		ar.endtime as end,
 		color 
 		FROM
-		Att_Record ar join ATTENDANCE a ON ar.ATTCODE =a.ATTCODE
+		att_record ar join attendance a ON ar.ATTCODE =a.ATTCODE
 		where empno = #{param1}
 		
 	</select>
@@ -74,14 +74,14 @@
 
 	<!-- 재형: 출근버튼 -->
 	<update id="startwork" parameterType="com.olive.dto.Att_Record">
-		update ATT_RECORD
+		update att_record
 		set attcode = #{attCode}, starttime = now()
 		where date_format(date, '%Y-%m-%d')=curdate() and empno = #{empNo}
 	</update>
 
 	<!-- 재형: 퇴근버튼 -->
 	<update id="endwork" parameterType="com.olive.dto.Att_Record">
-		update ATT_RECORD
+		update att_record
 		set attcode = #{attCode},
 		endtime = now()
 		where date_format(date, '%Y-%m-%d')=curdate() and empno = #{empNo}

@@ -75,7 +75,7 @@
 			</a> <!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/HRinfo/EditMyinfo.do">
-					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> My Page
+					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 				</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -169,7 +169,7 @@ function date(){
 
 function connect(){
 
-	websocket = new WebSocket('ws://localhost:8090/alarm.do');
+	websocket = new WebSocket('ws://52.79.131.247:8090/alarm.do');
 	websocket.onopen =(evt) =>{
 		
 	};

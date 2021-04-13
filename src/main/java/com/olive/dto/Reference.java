@@ -1,7 +1,6 @@
 package com.olive.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

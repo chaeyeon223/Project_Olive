@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSalaryDetail" parameterType="Hashmap"
 		resultType="com.olive.dto.SalaryInfo">
 		SELECT *
-		FROM salaryInfo
+		FROM salaryinfo
 		WHERE sal_date=#{sal_date} and
 		empno=#{empno}
 	</select>
@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="insertSalaryTbl" parameterType="java.util.List">
-		INSERT INTO Sal_record(
+		INSERT INTO sal_record(
 		SAL_DATE,
 		EMPNO,
 		basic_pay,
@@ -262,7 +262,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="resetAccount" parameterType="HashMap">
-		UPDATE EMP SET
+		UPDATE emp SET
 		STATUSCODE = 10,
 		ENABLED = 1,
 		LOGINCOUNT = 0,
@@ -272,7 +272,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<update id="retireAccount" parameterType="HashMap">
-		UPDATE EMP SET
+		UPDATE emp SET
 		STATUSCODE = 30,
 		LEAVEDATE = now(),
 		ENABLED = 0
@@ -280,7 +280,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<update id="updateAccount" parameterType="com.olive.dto.Emp">
-		UPDATE EMP SET
+		UPDATE emp SET
 		ename = #{ename},
 		birth = #{birth},
 		hireDate = #{hireDate},

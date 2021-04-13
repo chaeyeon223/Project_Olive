@@ -111,7 +111,7 @@
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 								<h5 class="m-0 font-weight-bold text-info">개인 문서함</h5>
 								<div class="">
-										<a class="" href="/approval/PersonalDoc.do" role="button">
+										<a class="" href="${pageContext.request.contextPath}/approval/PersonalDoc.do" role="button">
 											<img src="/resources/img/external-link.png">
 										</a>
 									</div>
@@ -171,7 +171,7 @@
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 								<h5 class="m-0 font-weight-bold text-info">결재 문서함</h5>
 								<div class="">
-										<a class="" href="/approval/ProgressDoc.do" role="button">
+										<a class="" href="${pageContext.request.contextPath}/approval/ProgressDoc.do" role="button">
 											<img src="/resources/img/external-link.png">
 										</a>
 									</div>

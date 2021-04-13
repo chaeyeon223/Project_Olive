@@ -7,7 +7,6 @@
 package com.olive.authentication.dao;
 
 import com.olive.dto.Emp;
-import com.olive.dto.Role;
 
 public interface AuthenticationDao {
 	

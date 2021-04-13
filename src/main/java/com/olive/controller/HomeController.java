@@ -37,9 +37,7 @@ import com.olive.approval.service.ApprovalService;
 import com.olive.attendance.service.AttendanceService;
 import com.olive.authentication.service.AuthenticationService;
 import com.olive.authentication.service.MailService;
-
 import com.olive.dto.Approver;
-import com.olive.dto.Att_Record;
 import com.olive.dto.Document;
 import com.olive.dto.Emp;
 import com.olive.hr_info.service.Hr_infoService;

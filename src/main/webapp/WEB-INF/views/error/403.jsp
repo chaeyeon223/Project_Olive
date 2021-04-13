@@ -22,7 +22,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Project_HR</title>
+<title>Olive_403</title>
 <!-- 스타일시트, CDN 모듈화 -->
 <jsp:include page="/WEB-INF/views/inc/HeadLink.jsp"></jsp:include>
 <!-- CodePen 차용 vertical progress bar -->
@@ -41,9 +41,9 @@
                     <!-- 404 Error Text -->
                     <div class="text-center" style =margin-top:10%>
                         <div class="error mx-auto" data-text="403" >403</div>
-                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
-                       <h3 class="text-gray-500 mb-0">혼자있고 싶어요,,나가주세요</h3>
-                        <a href="/index.jsp">&larr; Back to Login</a>
+                        <p class="lead text-gray-800 mb-5">HTTP 403 [Forbidden]</p>
+                       <h3 class="text-gray-500 mb-0">접근할 수 있는 권한이 없습니다.</h3>
+                        <a href="/index.jsp">&larr; Back to Page</a>
                     </div>
 
                 </div>
@@ -56,7 +56,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Olive 2021</span>
                     </div>
                 </div>
             </footer>
